@@ -2,246 +2,59 @@
   "schemaVersion": 1,
   "id": "smartlead-mcp",
   "kind": "provider-connector",
-  "artifactType": "connector",
-  "qualityVersion": 2,
+  "product": "pipmcp",
   "title": "Smartlead MCP server",
-  "description": "Inspect campaigns and explicitly create an empty campaign for manual configuration.",
+  "description": "Use Smartlead with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
   "status": "ready",
   "verification": "mock-only",
   "releaseEligible": true,
+  "operationIds": [],
   "maintainer": "jannikco",
   "license": "MIT",
-  "product": "pipmcp",
-  "appSlug": "smartlead",
-  "appName": "Smartlead",
-  "operationIds": [
-    "smartlead_list_campaigns",
-    "smartlead_create_campaign"
-  ],
-  "sourceRevision": "f02fdca3b0fe2f8e1700f6a73c5bae8d93b3f5a8e0c1777617074f0c20e4162b",
+  "attributionSlug": "github-smartlead-mcp",
+  "sourceRevision": "6e238bc30fee4589e208cf03b0f7ebf739617794ebc5d1fe60f2263d2b554995",
+  "qualityVersion": 2,
+  "artifactType": "connector",
   "evidence": [
-    "Actual tools/call and direct-provider request contract tests"
+    "Gateway HTTP transport fixtures",
+    "Generated stdio wrapper discovery/call fixtures"
   ],
   "provenance": [
     "https://raw.githubusercontent.com/Smartlead-Public/docs/main/guides/campaign-setup.mdx"
   ],
-  "attributionSlug": "github-smartlead-mcp",
-  "connectorId": "smartlead",
-  "connector": {
-    "id": "smartlead",
-    "name": "Smartlead",
-    "version": "0.1.0",
-    "baseUrl": "https://server.smartlead.ai/api/v1",
-    "auth": {
-      "type": "query",
-      "env": "SMARTLEAD_API_KEY",
-      "queryParam": "api_key"
-    },
-    "tools": [
-      {
-        "name": "smartlead_list_campaigns",
-        "description": "List campaigns visible to your API key.",
-        "method": "GET",
-        "path": "/campaigns",
-        "readOnly": true,
-        "approvalRequired": false,
-        "inputSchema": {
-          "type": "object",
-          "properties": {},
-          "required": [],
-          "additionalProperties": false
-        },
-        "bindings": {
-          "path": [],
-          "query": {},
-          "body": {}
-        },
-        "sampleArguments": {},
-        "evidence": {
-          "state": "documented",
-          "providerLiveValidation": "not-run"
-        },
-        "provenance": [
-          "https://raw.githubusercontent.com/Smartlead-Public/docs/main/guides/campaign-setup.mdx"
-        ]
-      },
-      {
-        "name": "smartlead_create_campaign",
-        "description": "Create an empty campaign; no leads, sequences, sender accounts or launch action are included.",
-        "method": "POST",
-        "path": "/campaigns/create",
-        "readOnly": false,
-        "approvalRequired": true,
-        "inputSchema": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          "required": [
-            "name"
-          ],
-          "additionalProperties": false
-        },
-        "bindings": {
-          "path": [],
-          "query": {},
-          "body": {
-            "name": "name"
-          }
-        },
-        "sampleArguments": {
-          "name": "Sandbox empty campaign"
-        },
-        "evidence": {
-          "state": "documented",
-          "providerLiveValidation": "not-run"
-        },
-        "provenance": [
-          "https://raw.githubusercontent.com/Smartlead-Public/docs/main/guides/campaign-setup.mdx"
-        ]
-      }
-    ],
-    "workflow": {
-      "name": "Smartlead authorized workflow",
-      "description": "Inspect campaigns and explicitly create an empty campaign for manual configuration.",
-      "steps": [
-        "smartlead_list_campaigns",
-        "smartlead_create_campaign"
-      ]
-    },
-    "provenance": [
-      "https://raw.githubusercontent.com/Smartlead-Public/docs/main/guides/campaign-setup.mdx"
-    ],
-    "sourceEvidence": {
-      "state": "documented",
-      "providerLiveValidation": "not-run",
-      "checkedAt": "2026-11-08",
-      "operationCount": 2,
-      "kind": "official-reference",
-      "sha256": "e76cea8141b4a187dd3c3f37d10edbc721bea0e3b341db6c5167c7fcef15656c",
-      "sources": [
-        {
-          "url": "https://raw.githubusercontent.com/Smartlead-Public/docs/main/guides/campaign-setup.mdx",
-          "sha256": "e76cea8141b4a187dd3c3f37d10edbc721bea0e3b341db6c5167c7fcef15656c",
-          "checkedAt": "2026-11-08T13:12:59.899348+00:00"
-        }
-      ]
-    },
-    "setup": {
-      "requiresPipMcpAccount": false,
-      "credentialsHelpUrl": "https://raw.githubusercontent.com/Smartlead-Public/docs/main/guides/campaign-setup.mdx",
-      "instructions": "Use your own Smartlead API key. The documented provider protocol requires api_key in the HTTPS query; avoid request URL logging. This connector does not expose launch or lead-upload actions."
-    },
-    "sampleWarning": "Example IDs and email addresses are placeholders. Replace them with records and recipients you are authorized to access. Samples do not authorize writes. HTTP/fixture success does not prove provider execution or email delivery.",
-    "appSlug": "smartlead",
-    "repoId": "smartlead-mcp",
-    "product": "pipmcp",
-    "artifactType": "connector",
-    "sourceRevision": "f02fdca3b0fe2f8e1700f6a73c5bae8d93b3f5a8e0c1777617074f0c20e4162b",
-    "capabilityEvidence": {
-      "local": {
-        "level": "Tested",
-        "operations": [
-          {
-            "name": "smartlead_list_campaigns",
-            "level": "Tested",
-            "evidenceRefs": [
-              "Provider request/stdio contract tests"
-            ],
-            "method": "contract-fixture"
-          },
-          {
-            "name": "smartlead_create_campaign",
-            "level": "Tested",
-            "evidenceRefs": [
-              "Provider request/stdio contract tests"
-            ],
-            "method": "contract-fixture"
-          }
-        ],
-        "evidenceRefs": [
-          "Provider request/stdio contract tests"
-        ],
-        "mode": "local"
-      },
-      "managed": {
-        "level": "Documented",
-        "operations": [
-          {
-            "name": "smartlead_list_campaigns",
-            "level": "Documented",
-            "evidenceRefs": [],
-            "method": "documentation"
-          },
-          {
-            "name": "smartlead_create_campaign",
-            "level": "Documented",
-            "evidenceRefs": [],
-            "method": "documentation"
-          }
-        ],
-        "evidenceRefs": [],
-        "mode": "managed"
-      }
-    },
-    "managedAvailability": {
-      "status": "import-required",
-      "integration": "openapi-to-mcp",
-      "checkedAt": "2026-11-08T13:20:45.156456+00:00"
-    }
+  "utility": {
+    "problem": "Inspect campaigns and explicitly create an empty campaign for manual configuration.",
+    "output": "Actual hosted tool schemas and durable governed execution receipts"
   },
+  "appSlug": "smartlead",
+  "appName": "Smartlead",
+  "connectorId": "smartlead",
+  "executionAuthority": "pipmcp-gateway",
+  "version": "1.0.0",
+  "agentReady": true,
   "capabilityEvidence": {
     "local": {
       "level": "Tested",
       "operations": [
         {
-          "name": "smartlead_list_campaigns",
+          "name": "gateway_transport",
           "level": "Tested",
+          "method": "contract-fixture",
           "evidenceRefs": [
-            "Provider request/stdio contract tests"
-          ],
-          "method": "contract-fixture"
-        },
-        {
-          "name": "smartlead_create_campaign",
-          "level": "Tested",
-          "evidenceRefs": [
-            "Provider request/stdio contract tests"
-          ],
-          "method": "contract-fixture"
+            "Generated gateway/stdio fixtures"
+          ]
         }
       ],
       "evidenceRefs": [
-        "Provider request/stdio contract tests"
+        "Generated gateway/stdio fixtures"
       ],
       "mode": "local"
     },
     "managed": {
       "level": "Documented",
-      "operations": [
-        {
-          "name": "smartlead_list_campaigns",
-          "level": "Documented",
-          "evidenceRefs": [],
-          "method": "documentation"
-        },
-        {
-          "name": "smartlead_create_campaign",
-          "level": "Documented",
-          "evidenceRefs": [],
-          "method": "documentation"
-        }
-      ],
+      "operations": [],
       "evidenceRefs": [],
       "mode": "managed"
     }
-  },
-  "utility": {
-    "problem": "Inspect campaigns and explicitly create an empty campaign for manual configuration.",
-    "output": "Actual provider API results through local MCP tools"
-  },
-  "providerDocs": "https://raw.githubusercontent.com/Smartlead-Public/docs/main/guides/campaign-setup.mdx"
+  }
 }

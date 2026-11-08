@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "product": "pipmcp",
+  "credential": "PIPMCP_API_KEY",
+  "skills": [
+    {
+      "name": "pipmcp-smartlead",
+      "description": "Connect AI agents to Smartlead using one PipMCP API key and actual hosted tool discovery."
+    }
+  ],
+  "files": {
+    "skills/pipmcp-smartlead/SKILL.md": "8fb557888ba87d7c417ef4d3499862c66d1962b1ab76724983c4f6abe2400d0e"
+  }
+}
